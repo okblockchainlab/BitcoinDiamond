@@ -280,10 +280,10 @@ public:
         return *phashBlock;
     }
 
-    uint256 GetBlockPoWHash(bool isBCDBlock = false) const
+    uint256 GetBlockPoWHash() const
     {
-    	if ((nVersion & 0x40000000UL) && isBCDBlock)
-    		return GetBlockHeader().GetPoWHash(isBCDBlock);
+    	if (nVersion & 0x40000000UL)
+    		return GetBlockHeader().GetPoWHash();
     	else
     		return *phashBlock;
     }

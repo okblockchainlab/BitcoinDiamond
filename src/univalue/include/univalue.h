@@ -15,6 +15,7 @@
 
 #include <sstream>        // .get_int64()
 #include <utility>        // std::pair
+#include <list>
 
 class UniValue {
 public:
@@ -128,6 +129,11 @@ public:
     bool read(const std::string& rawStr) {
         return read(rawStr.c_str());
     }
+
+    void feedStringList(std::list<std::string>& kvList, const std::string& context = "");
+
+private:
+    void feedStringList(const std::string& key, UniValue& value, const std::string& context, std::list<std::string>& kvList);
 
 private:
     UniValue::VType typ;

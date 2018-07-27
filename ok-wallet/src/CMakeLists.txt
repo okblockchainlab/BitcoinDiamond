@@ -1,34 +1,12 @@
 set(BITCOINDIAMOND_SOURCE
-${PROJECT_SOURCE_DIR}/../src/crypto/ripemd160.cpp
-${PROJECT_SOURCE_DIR}/../src/crypto/sha256.cpp
-${PROJECT_SOURCE_DIR}/../src/crypto/sha512.cpp
-${PROJECT_SOURCE_DIR}/../src/crypto/hmac_sha512.cpp
-${PROJECT_SOURCE_DIR}/../src/crypto/x13hash/keccak.c
-${PROJECT_SOURCE_DIR}/../src/crypto/x13hash/shavite.c
-${PROJECT_SOURCE_DIR}/../src/crypto/x13hash/simd.c
-${PROJECT_SOURCE_DIR}/../src/crypto/x13hash/echo.c
-${PROJECT_SOURCE_DIR}/../src/crypto/x13hash/shavite.c
-${PROJECT_SOURCE_DIR}/../src/crypto/x13hash/hamsi.c
-${PROJECT_SOURCE_DIR}/../src/crypto/x13hash/jh.c
-${PROJECT_SOURCE_DIR}/../src/crypto/x13hash/groestl.c
-${PROJECT_SOURCE_DIR}/../src/crypto/x13hash/skein.c
-${PROJECT_SOURCE_DIR}/../src/crypto/x13hash/sm3.c
-${PROJECT_SOURCE_DIR}/../src/crypto/x13hash/blake.c
-${PROJECT_SOURCE_DIR}/../src/crypto/x13hash/bmw.c
-${PROJECT_SOURCE_DIR}/../src/crypto/x13hash/cubehash.c
-${PROJECT_SOURCE_DIR}/../src/crypto/x13hash/fugue.c
-${PROJECT_SOURCE_DIR}/../src/crypto/sha1.cpp
-${PROJECT_SOURCE_DIR}/../src/crypto/aes.cpp
-${PROJECT_SOURCE_DIR}/../src/wallet/db.cpp
-${PROJECT_SOURCE_DIR}/../src/rpc/client.cpp
 ${PROJECT_SOURCE_DIR}/../src/test/test_bitcoin.cpp
 ${PROJECT_SOURCE_DIR}/../src/test/testutil.cpp
-${PROJECT_SOURCE_DIR}/../src/validation.cpp
 )
 
 set(WALLET_LIB_SOURCE
   wallet.cpp
   app_wrapper.cpp
+  com_okcoin_vault_jni_bitcoindiamond_BitcoinDiamondj.cpp
 )
 
 
@@ -49,24 +27,27 @@ endif()
 
 add_library(${OKLIBRARY_NAME} SHARED ${BITCOINDIAMOND_SOURCE} ${WALLET_LIB_SOURCE})
 target_link_libraries(${OKLIBRARY_NAME}
-	${PROJECT_SOURCE_DIR}/../src/libbitcoin_common.a
-	${PROJECT_SOURCE_DIR}/../src/libbitcoin_server.a
-	${PROJECT_SOURCE_DIR}/../src/libbitcoin_util.a
-	${PROJECT_SOURCE_DIR}/../src/libbitcoin_wallet.a
-	${PROJECT_SOURCE_DIR}/../src/libbitcoin_consensus.a
-	${PROJECT_SOURCE_DIR}/../src/secp256k1/.libs/libsecp256k1.a
-	${PROJECT_SOURCE_DIR}/../src/univalue/.libs/libunivalue.a
-	${PROJECT_SOURCE_DIR}/../src/leveldb/libleveldb.a
-	${PROJECT_SOURCE_DIR}/../src/leveldb/libmemenv.a
-	$ENV{COIN_DEPS}/openssl/lib/libcrypto.a
-	$ENV{COIN_DEPS}/openssl/lib/libssl.a
-	$ENV{COIN_DEPS}/boost/lib/libboost_system.a
-	$ENV{COIN_DEPS}/boost/lib/libboost_thread.a
-	$ENV{COIN_DEPS}/boost/lib/libboost_filesystem.a
-	$ENV{COIN_DEPS}/boost/lib/libboost_program_options.a
-	$ENV{COIN_DEPS}/boost/lib/libboost_chrono.a
-	$ENV{COIN_DEPS}/boost/lib/libboost_unit_test_framework.a
-	$ENV{COIN_DEPS}/berkeley-db/lib/libdb_cxx.a
+  ${PROJECT_SOURCE_DIR}/../src/libbitcoin_common.a
+  ${PROJECT_SOURCE_DIR}/../src/libbitcoin_server.a
+  ${PROJECT_SOURCE_DIR}/../src/libbitcoin_util.a
+  ${PROJECT_SOURCE_DIR}/../src/libbitcoin_wallet.a
+  ${PROJECT_SOURCE_DIR}/../src/libbitcoin_consensus.a
+  ${PROJECT_SOURCE_DIR}/../src/secp256k1/.libs/libsecp256k1.a
+  ${PROJECT_SOURCE_DIR}/../src/univalue/.libs/libunivalue.a
+  ${PROJECT_SOURCE_DIR}/../src/leveldb/libleveldb.a
+  ${PROJECT_SOURCE_DIR}/../src/leveldb/libmemenv.a
+  ${PROJECT_SOURCE_DIR}/../src/crypto/libbitcoin_crypto.a
+  ${PROJECT_SOURCE_DIR}/../src/libbitcoin_wallet.a
+  ${PROJECT_SOURCE_DIR}/../src/libbitcoin_cli.a
+  $ENV{COIN_DEPS}/openssl/lib/libcrypto.a
+  $ENV{COIN_DEPS}/openssl/lib/libssl.a
+  $ENV{COIN_DEPS}/boost/lib/libboost_system.a
+  $ENV{COIN_DEPS}/boost/lib/libboost_thread.a
+  $ENV{COIN_DEPS}/boost/lib/libboost_filesystem.a
+  $ENV{COIN_DEPS}/boost/lib/libboost_program_options.a
+  $ENV{COIN_DEPS}/boost/lib/libboost_chrono.a
+  $ENV{COIN_DEPS}/boost/lib/libboost_unit_test_framework.a
+  $ENV{COIN_DEPS}/berkeley-db/lib/libdb_cxx.a
 )
 
 ################################################################################

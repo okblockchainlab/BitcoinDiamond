@@ -39,7 +39,7 @@ mkdir ok-build
 cd ok-build
 
 #set ENABLE_WALLET macro at the same time with --enable-wallet for configure
-cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_WALLET=1 -DOKLIBRARY_NAME=${PROJECT_NAME} ../ok-wallet
+cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_WALLET=1 -DOKLIBRARY_NAME=${PROJECT_NAME} -DBOOST_ROOT="$COIN_DEPS/boost" ../ok-wallet
 [ $? -ne 0 ] && exit 1
 
 make -j 2

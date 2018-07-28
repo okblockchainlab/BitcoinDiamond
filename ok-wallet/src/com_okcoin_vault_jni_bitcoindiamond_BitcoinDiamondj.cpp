@@ -1,5 +1,6 @@
 #include "com_okcoin_vault_jni_bitcoindiamond_BitcoinDiamondj.h"
 #include "wallet.h"
+#include "string.h"
 
 
 static char* jstring2char(JNIEnv* env, jstring jstr)

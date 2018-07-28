@@ -1,6 +1,14 @@
 set(BITCOINDIAMOND_SOURCE
 ${PROJECT_SOURCE_DIR}/../src/test/test_bitcoin.cpp
 ${PROJECT_SOURCE_DIR}/../src/test/testutil.cpp
+${PROJECT_SOURCE_DIR}/../src/script/sign.cpp
+${PROJECT_SOURCE_DIR}/../src/keystore.cpp
+${PROJECT_SOURCE_DIR}/../src/protocol.cpp
+${PROJECT_SOURCE_DIR}/../src/amount.cpp
+${PROJECT_SOURCE_DIR}/../src/netbase.cpp
+${PROJECT_SOURCE_DIR}/../src/clientversion.cpp
+${PROJECT_SOURCE_DIR}/../src/base58.cpp
+${PROJECT_SOURCE_DIR}/../src/core_write.cpp
 )
 
 set(WALLET_LIB_SOURCE
@@ -9,8 +17,10 @@ set(WALLET_LIB_SOURCE
   com_okcoin_vault_jni_bitcoindiamond_BitcoinDiamondj.cpp
 )
 
+add_definitions(-DHAVE_CONFIG_H)
 
 include_directories(${PROJECT_SOURCE_DIR}/../src)
+include_directories(${PROJECT_SOURCE_DIR}/../src/config)
 include_directories(${PROJECT_SOURCE_DIR}/../src/secp256k1)
 include_directories(${PROJECT_SOURCE_DIR}/../src/leveldb/include)
 include_directories(${PROJECT_SOURCE_DIR}/../src/univalue/include)
@@ -37,7 +47,6 @@ target_link_libraries(${OKLIBRARY_NAME}
   ${PROJECT_SOURCE_DIR}/../src/leveldb/libleveldb.a
   ${PROJECT_SOURCE_DIR}/../src/leveldb/libmemenv.a
   ${PROJECT_SOURCE_DIR}/../src/crypto/libbitcoin_crypto.a
-  ${PROJECT_SOURCE_DIR}/../src/libbitcoin_wallet.a
   ${PROJECT_SOURCE_DIR}/../src/libbitcoin_cli.a
   $ENV{COIN_DEPS}/openssl/lib/libcrypto.a
   $ENV{COIN_DEPS}/openssl/lib/libssl.a

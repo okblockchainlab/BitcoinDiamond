@@ -29,7 +29,7 @@ esac
 
 
 ./autogen.sh
-./configure --disable-gui-tests --enable-wallet --with-gui=no --with-boost=$COIN_DEPS/boost BDB_CFLAGS="-I$COIN_DEPS/berkeley-db/include" BDB_LIBS="-L$COIN_DEPS/berkeley-db/lib -ldb -ldb_cxx" SSL_CFLAGS="-I$COIN_DEPS/openssl/include" SSL_LIBS="-L$COIN_DEPS/openssl/lib -lssl" CRYPTO_CFLAGS="-I$COIN_DEPS/openssl/include" CRYPTO_LIBS="-L$COIN_DEPS/openssl/lib -lcrypto" PROTOBUF_CFLAGS="-I$COIN_DEPS/protobuf/include" PROTOBUF_LIBS="-L$COIN_DEPS/protobuf/lib -lprotobuf" EVENT_CFLAGS="-I$COIN_DEPS/libevent/include" EVENT_LIBS="-L$COIN_DEPS/libevent/lib -levent" EVENT_PTHREADS_CFLAGS="-I$COIN_DEPS/libevent/include" EVENT_PTHREADS_LIBS="-L$COIN_DEPS/libevent/lib -levent_pthreads"
+./configure --disable-gui-tests --enable-wallet --with-gui=no --with-boost=$COIN_DEPS/boost BDB_CFLAGS="-I$COIN_DEPS/berkeley-db/include" BDB_LIBS="-L$COIN_DEPS/berkeley-db/lib -ldb -ldb_cxx" SSL_CFLAGS="-I$COIN_DEPS/openssl/include" SSL_LIBS="-L$COIN_DEPS/openssl/lib -lssl" CRYPTO_CFLAGS="-I$COIN_DEPS/openssl/include" CRYPTO_LIBS="-L$COIN_DEPS/openssl/lib -lcrypto" PROTOBUF_CFLAGS="-I$COIN_DEPS/protobuf/include" PROTOBUF_LIBS="-L$COIN_DEPS/protobuf/lib -lprotobuf" EVENT_CFLAGS="-I$COIN_DEPS/libevent/include" EVENT_LIBS="-L$COIN_DEPS/libevent/lib -levent" EVENT_PTHREADS_CFLAGS="-I$COIN_DEPS/libevent/include" EVENT_PTHREADS_LIBS="-L$COIN_DEPS/libevent/lib -levent_pthreads" LDFLAGS="-ldl" CFLAGS="-fPIC -O2" CXXFLAGS="-fPIC -O2"
 make -j 2
 [ $? -ne 0 ] && exit 1
 

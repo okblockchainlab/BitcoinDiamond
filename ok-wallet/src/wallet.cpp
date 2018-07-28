@@ -9,24 +9,6 @@
 
 #include <boost/algorithm/string.hpp>
 
-bool GetAddressFromPrivateKey(const std::string& prv, std::string& address)
-{
-  CBitcoinSecret bsecret;
-
-  if (bsecret.SetString(prv) != true) {
-    return false;
-  }
-  CKey key = bsecret.GetKey();
-  CPubKey pubkey  = key.GetPubKey();
-
-  CBitcoinAddress addr;
-  if (true != addr.Set(pubkey.GetID())) {
-    return false;
-  }
-
-  address = addr.ToString();
-  return true;
-}
 
 static std::list<std::string> _invokeRpc(const std::string& args)
 {

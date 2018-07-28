@@ -59,7 +59,7 @@ cd boost_1_66_0
 GCCJAM=`find . -name gcc.jam`
 sed -i -e "s/if \$(link) = shared/if \$(link) = shared \|\| \$(link) = static/g" $GCCJAM
 ./bootstrap.sh
-./b2 --prefix=$COIN_DEPS/boost --build-dir=boost.build link=static runtime-link=static variant=release install
+./b2 --prefix=$COIN_DEPS/boost --build-dir=boost.build --without-python link=static runtime-link=static variant=release install
 [ $? -ne 0 ] &&  exit 1
 
 

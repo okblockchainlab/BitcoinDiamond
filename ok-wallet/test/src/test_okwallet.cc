@@ -69,13 +69,13 @@ TEST_F(OKWalletTest, getaddressbyprivatekey) {
   auto cmd = std::string("getaddressbyprivatekey ") + strSecret;
   execute("testnet", cmd, result);
 
-  ASSERT_EQ(2, result.size());
+  ASSERT_EQ((size_t)2, result.size());
   ASSERT_STREQ(addr, result.back().c_str());
 
   cmd = std::string("getaddressbyprivatekey ") + strSecretC;
   execute("testnet", cmd, result);
 
-  ASSERT_EQ(2, result.size());
+  ASSERT_EQ((size_t)2, result.size());
   ASSERT_STREQ(addrC, result.back().c_str());
 }
 
@@ -88,7 +88,7 @@ TEST_F(OKWalletTest, createrawtransaction) {
   std::list<std::string> result;
   execute("testnet", cmd, result);
 
-  ASSERT_EQ(2, result.size());
+  ASSERT_EQ((size_t)2, result.size());
   ASSERT_STREQ(
     "0c00000043497fd7f826957108f4a30fd9cec3aeba79972084e90ead01ea33090000000001f393847c97508f24b772281deea475cd3e0f719f321794e5da7cf8587e28ccb40100000000ffffffff0180778e06000000001976a914e20a55c7930322b0f730365618c7e59b9c99959d88ac00000000",
     result.back().c_str()
@@ -111,7 +111,7 @@ TEST_F(OKWalletTest, signrawtransaction) {
   std::list<std::string> result;
   execute("main", cmd, result);
 
-  ASSERT_EQ(4, result.size());
+  ASSERT_EQ((size_t)4, result.size());
   const auto& hex = *std::next(result.begin());
   const auto& complete = *result.rbegin();
   ASSERT_STREQ("0200000001f393847c97508f24b772281deea475cd3e0f719f321794e5da7cf8587e28ccb4010000009200483045022100aa60e88fd655415eea4a10947f84e844127dda8433e38dec2736bab906897b41022027ab233c232c4cb0258204e0ae6e9200da0b60319cb99e0029a6159fbd889d0d0147512103debedc17b3df2badbcdd86d5feb4562b86fe182e5998abd8bcd4f122c6155b1b21027e940bb73ab8732bfdf7f9216ecefca5b94d6df834e77e108f68e66f126044c052aeffffffff0100ab90410000000017a914b10c9df5f7edf436c697f02f1efdba4cf39961518700000000",

@@ -190,6 +190,6 @@ if [ ! -d zeromq-4.2.3 ]; then
 fi
 
 cd zeromq-4.2.3
-./configure --prefix=$COIN_DEPS/zeromq --enable-static=yes --enable-shared=no
+./configure --prefix=$COIN_DEPS/zeromq --enable-static=yes --enable-shared=no CFLAGS="-fPIC" CXXFLAGS="-fPIC"
 make && make install
 [ $? -ne 0 ] &&  exit 1

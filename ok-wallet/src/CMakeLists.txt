@@ -57,6 +57,8 @@ target_link_libraries(${OKLIBRARY_NAME}
   $ENV{COIN_DEPS}/boost/lib/libboost_chrono.a
   $ENV{COIN_DEPS}/boost/lib/libboost_unit_test_framework.a
   $ENV{COIN_DEPS}/berkeley-db/lib/libdb_cxx.a
+  $ENV{COIN_DEPS}/miniupnpc/lib/libminiupnpc.a
+  $ENV{COIN_DEPS}/zeromq/lib/libzmq.a
 )
 
 ################################################################################

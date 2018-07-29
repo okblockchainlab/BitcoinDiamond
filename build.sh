@@ -42,6 +42,10 @@ if [ ! -d ./libevent ]; then
 	mkdir libevent
 fi
 
+if [ ! -d ./zeromq ]; then
+	mkdir zeromq
+fi
+
 ###install boost
 cd $LIBDOWNLOAD
 
@@ -80,7 +84,7 @@ cd openssl-1.0.2k
 TARGET_OS=`uname -s`
 MHD_NAME=`uname -m`
 if [ "$TARGET_OS" == "Darwin" ] && [ "$MHD_NAME" == "x86_64" ]; then
-	./Configure  no-shared enable-ec enable-ecdh enable-ecdsa -fPIC --prefix=$COIN_DEPS/openssl darwin64-x86_64-cc 
+	./Configure  no-shared enable-ec enable-ecdh enable-ecdsa -fPIC --prefix=$COIN_DEPS/openssl darwin64-x86_64-cc
 else
 	./config --prefix=$COIN_DEPS/openssl no-shared enable-ec enable-ecdh enable-ecdsa -fPIC
 fi
@@ -170,5 +174,22 @@ fi
 
 cd protobuf-3.6.0
 ./configure --prefix=$COIN_DEPS/protobuf --disable-shared
+make && make install
+[ $? -ne 0 ] &&  exit 1
+
+cd $LIBDOWNLOAD
+
+if [ ! -f ./zeromq-4.2.3.tar.gz ]; then
+	wget https://github.com/zeromq/libzmq/releases/download/v4.2.3/zeromq-4.2.3.tar.gz
+	[ $? -ne 0 ] && (echo "Error cannot download zeromq-4.2.3.tar.gz" && exit 1)
+fi
+
+if [ ! -d zeromq-4.2.3 ]; then
+	tar xf zeromq-4.2.3.tar.gz
+	[ $? -ne 0 ] && (echo "Error cannot xf zeromq-4.2.3.tar.gz" && exit 1)
+fi
+
+cd zeromq-4.2.3
+./configure --prefix=$COIN_DEPS/zeromq --enable-static=yes --enable-shared=no
 make && make install
 [ $? -ne 0 ] &&  exit 1
